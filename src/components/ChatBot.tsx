@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, Map } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   id: number;
@@ -20,6 +21,7 @@ const ChatBot: React.FC<ChatBotProps> = ({
   onClose,
   context 
 }) => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(isAutoOpen);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -104,8 +106,21 @@ const ChatBot: React.FC<ChatBotProps> = ({
     }
   };
 
+  const handleMapClick = () => {
+    navigate('/map');
+  };
+
   return (
     <div className="fixed bottom-6 right-6 z-50">
+      {/* Map Button */}
+      <button
+        onClick={handleMapClick}
+        className="mb-3 w-14 h-14 bg-gradient-sunset text-white rounded-full shadow-large hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center"
+        title="View Monasteries Map"
+      >
+        <Map className="w-6 h-6" />
+      </button>
+
       {/* Chat Window */}
       {isOpen && (
         <div 

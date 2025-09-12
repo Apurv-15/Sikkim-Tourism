@@ -13,6 +13,7 @@ import NorthSikkim from "./pages/NorthSikkim";
 import Culture from "./pages/Culture";
 import Food from "./pages/Food";
 import Plan from "./pages/Plan";
+import Map from "./pages/Map";
 import NotFound from "./pages/NotFound";
 import Loader from "./components/Loader";
 import ChatBot from "./components/ChatBot";
@@ -50,6 +51,7 @@ const App = () => {
               <Route path="/culture" element={<Culture />} />
               <Route path="/food" element={<Food />} />
               <Route path="/plan" element={<Plan />} />
+              <Route path="/map" element={<Map />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
