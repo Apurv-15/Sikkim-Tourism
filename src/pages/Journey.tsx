@@ -134,9 +134,12 @@ const Journey = () => {
                               <span className="text-sm">{region.monasteries.length} Sites</span>
                             </div>
                           </div>
-                          <div className="px-4 py-2 bg-gradient-mountain rounded-full text-sm font-medium hover:shadow-large transition-all duration-300">
+                          <button 
+                            className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-sm font-medium hover:from-blue-600 hover:to-blue-700 active:from-blue-700 active:to-blue-800 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200"
+                            onClick={(e) => e.preventDefault()}
+                          >
                             Explore Now →
-                          </div>
+                          </button>
                         </div>
                       </CardContent>
                     </div>
@@ -149,6 +152,11 @@ const Journey = () => {
           {/* Additional Info */}
           <div className="text-center mt-16">
             <div className="glass rounded-3xl p-8 max-w-2xl mx-auto">
+            <button 
+              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full font-medium hover:from-blue-600 hover:to-blue-700 active:from-blue-700 active:to-blue-800 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 mx-auto block mb-6"
+            >
+              Start Your Journey
+            </button>
               <h3 className="text-xl font-bold text-foreground mb-4">Sacred Journey Experience</h3>
               <p className="text-foreground/70 leading-relaxed">
                 Each region offers unique spiritual experiences, from ancient monasteries to sacred lakes. 

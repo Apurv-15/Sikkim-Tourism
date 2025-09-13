@@ -13,6 +13,7 @@ export interface MonasteryData {
   specialFeatures: string[];
   difficulty?: 'easy' | 'moderate' | 'difficult';
   requiresPermit?: boolean;
+  view360?: string;
 }
 
 export interface RegionData {
@@ -48,6 +49,7 @@ export const regionsData: RegionData[] = [
         coordinates: { lat: 27.2904, lng: 88.5625 },
         altitude: '5,200 ft',
         specialFeatures: ['Karma Kagyu Lineage', 'Largest Monastery', 'Golden Stupa', 'Traditional Architecture'],
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757699738499!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJRHNqcnJmWUE.!2m2!1d27.3059104605377!2d88.53628917812625!3f26.221613!4f0!5f0.7820865974627469',
         difficulty: 'easy'
       },
       {
@@ -58,6 +60,7 @@ export const regionsData: RegionData[] = [
         image: monastery,
         coordinates: { lat: 27.3389, lng: 88.6065 },
         altitude: '6,200 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757699828787!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0pzTXEzOWdF!2m2!1d27.33593677395685!2d88.61916587167339!3f44.015686!4f0!5f0.7820865974627469',
         specialFeatures: ['Nyingma Order', '200 Years Old', 'Spirit Protection', 'City Location'],
         difficulty: 'easy'
       },
@@ -85,10 +88,11 @@ export const regionsData: RegionData[] = [
         id: 'pemayangtse',
         name: 'Pemayangtse Monastery',
         nearestTown: 'Pelling',
-        significance: 'One of the oldest and most important monasteries in Sikkim, founded in the 17th century. It features incredible wooden sculptures and paintings.',
+        significance: 'One of the oldest and most important monasteries in Sikkim, known for its wooden sculptures and murals, and the perfect view of Kanchenjunga.',
         image: monastery,
-        coordinates: { lat: 27.2065, lng: 88.2126 },
+        coordinates: { lat: 27.3074, lng: 88.2544 },
         altitude: '6,840 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757699922593!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0U3SXFEeFFF!2m2!1d27.30426034149243!2d88.30153660084635!3f268.7781!4f0!5f0.7820865974627469',
         specialFeatures: ['17th Century', 'Wooden Sculptures', 'Ancient Paintings', 'Sublime Perfect Lotus'],
         difficulty: 'easy'
       },
@@ -118,21 +122,23 @@ export const regionsData: RegionData[] = [
         id: 'dubdi',
         name: 'Dubdi Monastery',
         nearestTown: 'Yuksom',
-        significance: 'The very first monastery established in Sikkim in 1701. Reaching it requires a moderate trek, making it a pilgrimage for the determined.',
+        significance: 'The first monastery established in Sikkim in 1701, also known as the Hermit\'s Cell after the solitary meditators who lived there.',
         image: monastery,
-        coordinates: { lat: 27.3667, lng: 88.2167 },
-        altitude: '6,800 ft',
+        coordinates: { lat: 27.3667, lng: 88.2333 },
+        altitude: '6,900 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757700057067!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJRFVpdHkxNndF!2m2!1d27.36655288826205!2d88.22999220879571!3f322.33299132072915!4f3.036182471849969!5f0.4000000000000002',
         specialFeatures: ['First Monastery', 'Est. 1701', 'Trekking Required', 'The Hermit\'s Cell'],
         difficulty: 'moderate'
       },
       {
         id: 'khecheopalri',
         name: 'Khecheopalri Lake & Monastery',
-        nearestTown: 'Pelling / Yuksom',
-        significance: 'A sacred, wish-fulfilling lake for both Buddhists and Hindus. A small monastery overlooks this serene and pristine waterbody.',
+        nearestTown: 'Pelling',
+        significance: 'A sacred lake and monastery complex considered one of the most sacred in Sikkim, known for its wish-fulfilling powers.',
         image: tsomgoLake,
-        coordinates: { lat: 27.3167, lng: 88.2167 },
-        altitude: '5,650 ft',
+        coordinates: { lat: 27.3500, lng: 88.2000 },
+        altitude: '6,000 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757700141366!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0ctZlhuNkFF!2m2!1d27.34922097771846!2d88.18827678962926!3f22.460953!4f0!5f0.7820865974627469',
         specialFeatures: ['Wish-fulfilling Lake', 'Buddhist & Hindu Sacred', 'Pristine Waters', 'Monastery Overlook'],
         difficulty: 'easy'
       }
@@ -146,57 +152,50 @@ export const regionsData: RegionData[] = [
     image: sikkimHero1,
     monasteries: [
       {
-        id: 'ralang',
-        name: 'Ralang Monastery',
-        nearestTown: 'Ravangla',
-        significance: 'The largest monastery in South Sikkim, famous for its grand scale and for hosting the spectacular Pang Lhabsol festival.',
+        id: 'sanga-choeling',
+        name: 'Sanga Choeling Monastery',
+        nearestTown: 'Pelling',
+        significance: 'The oldest monastery in Sikkim, established in 1697, offering panoramic views of the Himalayan range.',
         image: monastery,
-        coordinates: { lat: 27.2833, lng: 88.5167 },
-        altitude: '4,200 ft',
+        coordinates: { lat: 27.3000, lng: 88.2167 },
+        altitude: '6,500 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757700009211!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREVnS3p0dlFF!2m2!1d27.29775170700695!2d88.22168671699492!3f245.1103!4f0!5f0.7820865974627469',
         specialFeatures: ['Largest in South Sikkim', 'Pang Lhabsol Festival', 'Grand Scale', 'Cultural Hub'],
         difficulty: 'easy'
       },
       {
         id: 'buddha-park',
-        name: 'Buddha Park (Tathagata Tsal)',
+        name: 'Buddha Park',
         nearestTown: 'Ravangla',
-        significance: 'A major modern pilgrimage site featuring a 130-foot-high statue of the Buddha, set in beautifully landscaped gardens with a monastery within the complex.',
+        significance: 'Home to a magnificent 130-foot tall statue of Lord Buddha, offering panoramic views of the Himalayan range.',
         image: monastery,
-        coordinates: { lat: 27.2833, lng: 88.5167 },
+        coordinates: { lat: 27.3167, lng: 88.3500 },
         altitude: '7,000 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757700338545!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ3h5UFdocGdF!2m2!1d27.31201738720143!2d88.36375632509409!3f90.75193!4f0!5f0.7820865974627469',
         specialFeatures: ['130ft Buddha Statue', 'Modern Pilgrimage', 'Landscaped Gardens', 'Monastery Complex'],
         difficulty: 'easy'
       },
       {
         id: 'samdruptse',
-        name: 'Samdruptse Hill (Guru Padmasambhava Statue)',
+        name: 'Samdruptse Hill',
         nearestTown: 'Namchi',
-        significance: 'Home to the world\'s largest statue of Guru Padmasambhava (Guru Rinpoche), the patron saint of Sikkim. The hill offers panoramic views.',
-        image: sikkimHero1,
-        coordinates: { lat: 27.1667, lng: 88.3667 },
-        altitude: '5,500 ft',
-        specialFeatures: ['World\'s Largest Statue', 'Guru Rinpoche', 'Panoramic Views', 'Patron Saint'],
-        difficulty: 'easy'
-      },
-      {
-        id: 'ngadak',
-        name: 'Ngadak Monastery',
-        nearestTown: 'Namchi',
-        significance: 'An older, serene monastery that promises a peaceful retreat. It was once a palace for a Sikkimese princess.',
+        significance: 'Home to a massive 135-foot tall statue of Guru Padmasambhava with panoramic views of the Eastern Himalayas.',
         image: monastery,
-        coordinates: { lat: 27.1667, lng: 88.3667 },
-        altitude: '4,800 ft',
+        coordinates: { lat: 27.1833, lng: 88.3833 },
+        altitude: '7,000 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757700396425!6m8!1m7!1sCAoSFkNJSE0wb2dLRUlDQWdJQ1J1TTdwVUE.!2m2!1d27.17997430510306!2d88.37967751567115!3f242.2022723076923!4f0.6025641025641022!5f0.4000000000000002',
         specialFeatures: ['Former Palace', 'Sikkimese Princess', 'Peaceful Retreat', 'Historical Significance'],
         difficulty: 'easy'
       },
       {
         id: 'bon',
         name: 'Bon Monastery',
-        nearestTown: 'Ravangla',
-        significance: 'The only monastery in Sikkim that belongs to the Bon tradition, which is a pre-Buddhist Tibetan religion. A unique cultural site.',
+        nearestTown: 'Namchi',
+        significance: 'The only Bon monastery in Sikkim, representing the indigenous pre-Buddhist religion of Tibet.',
         image: monastery,
-        coordinates: { lat: 27.2833, lng: 88.5167 },
-        altitude: '6,200 ft',
+        coordinates: { lat: 27.2667, lng: 88.3333 },
+        altitude: '6,500 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757700472252!6m8!1m7!1sLgsokm0jHwYRunieRkxAjg!2m2!1d27.27885150435554!2d88.33447050699141!3f196.34445!4f0!5f0.7820865974627469',
         specialFeatures: ['Bon Tradition', 'Pre-Buddhist', 'Unique in Sikkim', 'Tibetan Religion'],
         difficulty: 'easy'
       }
@@ -210,6 +209,19 @@ export const regionsData: RegionData[] = [
     image: yumthangValley,
     specialNote: 'Special permits required for visiting this region',
     monasteries: [
+      {
+        id: 'do-drul',
+        name: 'Do-Drul Chorten',
+        nearestTown: 'Gangtok',
+        significance: 'One of the most important stupas in Sikkim, housing rare religious objects and a complete set of the Kangyur scriptures.',
+        image: monastery,
+        coordinates: { lat: 27.3316, lng: 88.6138 },
+        altitude: '5,500 ft',
+        view360: 'https://www.google.com/maps/embed?pb=!4v1757699868116!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJREpwTkQ3emdF!2m2!1d27.31284146711967!2d88.60483660425811!3f353.4361!4f0!5f0.7820865974627469',
+        specialFeatures: ['Kagyupa Order', 'Ancient Murals', 'High Altitude', 'Important Site'],
+        difficulty: 'moderate',
+        requiresPermit: true
+      },
       {
         id: 'phodong',
         name: 'Phodong Monastery',

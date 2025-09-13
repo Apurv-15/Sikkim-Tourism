@@ -11,7 +11,6 @@ import WestSikkim from "./pages/WestSikkim";
 import SouthSikkim from "./pages/SouthSikkim";
 import NorthSikkim from "./pages/NorthSikkim";
 import Culture from "./pages/Culture";
-import Food from "./pages/Food";
 import Plan from "./pages/Plan";
 import Map from "./pages/Map";
 import NotFound from "./pages/NotFound";
@@ -49,7 +48,6 @@ const App = () => {
               <Route path="/south-sikkim" element={<SouthSikkim />} />
               <Route path="/north-sikkim" element={<NorthSikkim />} />
               <Route path="/culture" element={<Culture />} />
-              <Route path="/food" element={<Food />} />
               <Route path="/plan" element={<Plan />} />
               <Route path="/map" element={<Map />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

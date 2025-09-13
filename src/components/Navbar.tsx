@@ -15,7 +15,7 @@ const Navbar = () => {
     { name: 'Destinations', path: '/destinations' },
     { name: 'Monasteries Map', path: '/map' },
     { name: 'Culture & Festivals', path: '/culture' },
-    { name: 'Food & Lifestyle', path: '/food' },
+    // { name: 'Food & Lifestyle', path: '/food' },
     { name: 'Plan Your Trip', path: '/plan' },
   ];
 
