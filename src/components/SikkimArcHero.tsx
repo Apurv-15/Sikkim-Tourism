@@ -148,7 +148,7 @@ const SikkimArcHero = () => {
   return (
     <section 
       ref={heroRef}
-      className="relative min-h-screen overflow-hidden pt-32 md:pt-40"
+      className="relative min-h-screen overflow-hidden pt-40 md:pt-48"
     >
       {/* Background Video */}
       <div className="absolute inset-0 w-full h-full z-0">
