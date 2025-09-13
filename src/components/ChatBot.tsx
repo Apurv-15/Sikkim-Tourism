@@ -152,7 +152,7 @@ const ChatBot: React.FC<ChatBotProps> = ({
           {/* Messages */}
           <div 
             ref={messagesRef}
-            className="flex-1 p-4 space-y-3 overflow-y-auto h-64 bg-gradient-sky/50"
+            className="flex-1 p-4 space-y-3 overflow-y-auto h-64 bg-gradient-to-b from-card to-card/80"
           >
             {messages.map((message) => (
               <div
@@ -162,8 +162,8 @@ const ChatBot: React.FC<ChatBotProps> = ({
                 <div
                   className={`max-w-xs px-3 py-2 rounded-2xl text-sm ${
                     message.isBot
-                      ? 'bg-white/90 text-foreground shadow-soft'
-                      : 'bg-primary text-primary-foreground shadow-soft'
+                      ? 'bg-white/95 text-gray-900 shadow-soft'
+                      : 'bg-blue-600 text-white shadow-soft'
                   }`}
                 >
                   {message.text}
@@ -173,7 +173,7 @@ const ChatBot: React.FC<ChatBotProps> = ({
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t border-border bg-card/50">
+          <div className="p-4 border-t border-border bg-card/90 backdrop-blur-sm">
             <div className="flex items-center space-x-2">
               <input
                 type="text"
@@ -181,7 +181,7 @@ const ChatBot: React.FC<ChatBotProps> = ({
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about Sikkim..."
-                className="flex-1 px-3 py-2 bg-background/80 border border-border rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className="flex-1 px-3 py-2 bg-white/95 border border-gray-200 rounded-full text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               />
               <button
                 onClick={handleSendMessage}

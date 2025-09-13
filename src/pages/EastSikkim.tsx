@@ -2,11 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, MapPin, Clock, Star, Eye, MessageCircle, Compass } from 'lucide-react';
+import { ArrowLeft, MapPin, Clock, Star, MessageCircle, Compass, Globe } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import StreetViewModal from '../components/StreetViewModal';
+import View360Modal from '../components/View360Modal';
 import ChatBot from '../components/ChatBot';
 import { regionsData } from '../data/monasteries';
 
@@ -15,10 +16,11 @@ gsap.registerPlugin(ScrollTrigger);
 const EastSikkim = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
-  const [streetViewModal, setStreetViewModal] = useState<{
+const [view360Modal, setView360Modal] = useState<{
     isOpen: boolean;
-    monastery: any;
-  }>({ isOpen: false, monastery: null });
+    src: string;
+    title: string;
+  }>({ isOpen: false, src: '', title: '' });
   const [chatBot, setChatBot] = useState<{
     isOpen: boolean;
     context: string;
@@ -73,8 +75,12 @@ const EastSikkim = () => {
     };
   }, []);
 
-  const openStreetView = (monastery: any) => {
-    setStreetViewModal({ isOpen: true, monastery });
+const openView360 = (src: string, title: string) => {
+    setView360Modal({ isOpen: true, src, title });
+  };
+
+  const closeView360 = () => {
+    setView360Modal({ isOpen: false, src: '', title: '' });
   };
 
   const openChatBot = (monasteryName: string) => {
@@ -205,23 +211,32 @@ const EastSikkim = () => {
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex flex-wrap gap-3">
-                        <Button
-                          onClick={() => openStreetView(monastery)}
-                          variant="outline"
-                          size="sm"
-                          className="glass border-white/20 hover:bg-white/20"
+                      <div className="flex gap-2 flex-wrap">
+{monastery.view360 && (
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="gap-2 bg-white/5 backdrop-blur-sm hover:bg-white/10 border-white/10"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              openView360(monastery.view360, monastery.name);
+                            }}
+                          >
+                            <Globe className="w-4 h-4" />
+                            360° View
+                          </Button>
+                        )}
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className="gap-2 bg-white/5 backdrop-blur-sm hover:bg-white/10 border-white/10"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openChatBot(monastery.name);
+                          }}
                         >
-                          <Eye className="w-4 h-4 mr-2" />
-                          360° View
-                        </Button>
-                        <Button
-                          onClick={() => openChatBot(monastery.name)}
-                          className="bg-gradient-mountain hover:shadow-large"
-                          size="sm"
-                        >
-                          <MessageCircle className="w-4 h-4 mr-2" />
-                          Plan Trip
+                          <MessageCircle className="w-4 h-4" />
+                          Ask AI
                         </Button>
                       </div>
                     </CardContent>
@@ -233,22 +248,17 @@ const EastSikkim = () => {
         </div>
       </div>
 
-      {/* Street View Modal */}
-      <StreetViewModal
-        isOpen={streetViewModal.isOpen}
-        onClose={() => setStreetViewModal({ isOpen: false, monastery: null })}
-        coordinates={streetViewModal.monastery?.coordinates}
-        title={streetViewModal.monastery?.name || ''}
+<View360Modal
+        isOpen={view360Modal.isOpen}
+        onClose={closeView360}
+        src={view360Modal.src}
+        title={view360Modal.title}
       />
-
-      {/* ChatBot */}
-      {chatBot.isOpen && (
-        <ChatBot
-          isAutoOpen={true}
-          context={chatBot.context}
-          onClose={() => setChatBot({ isOpen: false, context: '' })}
-        />
-      )}
+      <ChatBot
+        isAutoOpen={chatBot.isOpen}
+        onClose={() => setChatBot({ isOpen: false, context: '' })}
+        context={chatBot.context}
+      />
     </div>
   );
 };
