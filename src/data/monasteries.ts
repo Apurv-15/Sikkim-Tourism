@@ -31,6 +31,8 @@ import tsomgoLake from '@/assets/tsomgo-lake.jpg';
 import yumthangValley from '@/assets/yumthang-valley.jpg';
 import monastery from '@/assets/monastery.jpg';
 import sikkimHero1 from '@/assets/sikkim-hero-1.jpg';
+import eastSikkimImage from '@/assets/destination images/IMG_1.jpg';
+import southSikkimImage from '@/assets/destination images/img_2.jpg';
 
 export const regionsData: RegionData[] = [
   {
@@ -38,7 +40,7 @@ export const regionsData: RegionData[] = [
     name: 'East Sikkim',
     subtitle: 'The Capital Region',
     description: 'The most accessible region, with the capital city, Gangtok, as its hub.',
-    image: sikkimHero1,
+    image: eastSikkimImage,
     monasteries: [
       {
         id: 'rumtek',
@@ -149,7 +151,7 @@ export const regionsData: RegionData[] = [
     name: 'South Sikkim',
     subtitle: 'The Statue and Pilgrimage Hub',
     description: 'This region is famous for its massive, awe-inspiring statues and modern pilgrimage centres. Ravangla and Namchi are the key towns.',
-    image: sikkimHero1,
+    image: southSikkimImage,
     monasteries: [
       {
         id: 'sanga-choeling',

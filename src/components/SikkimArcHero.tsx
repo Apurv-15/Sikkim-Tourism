@@ -1,11 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { useNavigate } from 'react-router-dom';
-import sikkimHero1 from '@/assets/sikkim-hero-1.jpg';
-import tsomgoLake from '@/assets/tsomgo-lake.jpg';
-import yumthangValley from '@/assets/yumthang-valley.jpg';
-import monastery from '@/assets/monastery.jpg';
-import sikkimFood from '@/assets/sikkim-food.jpg';
 
 const SikkimArcHero = () => {
   const navigate = useNavigate();
@@ -17,36 +12,72 @@ const SikkimArcHero = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement[]>([]);
 
-  const sikkimImages = [
-    { src: sikkimHero1, alt: 'Sikkim Mountains' },
-    { src: tsomgoLake, alt: 'Tsomgo Lake' },
-    { src: yumthangValley, alt: 'Yumthang Valley' },
-    { src: monastery, alt: 'Tibetan Monastery' },
-    { src: sikkimFood, alt: 'Sikkim Cuisine' },
-    { src: sikkimHero1, alt: 'Snow Peaks' },
-    { src: tsomgoLake, alt: 'Sacred Lake' },
-    { src: yumthangValley, alt: 'Valley of Flowers' },
-  ];
+  const [sikkimImages, setSikkimImages] = useState<Array<{src: string, alt: string}>>([]);
+
+  // Helper function to generate random rotation between -15 and 15 degrees
+  const getRandomRotation = () => {
+    return Math.floor(Math.random() * 30) - 15;
+  };
+
+  // Helper function to generate random position for images
+  const getRandomPosition = (index: number) => {
+    const angle = (index / sikkimImages.length) * Math.PI * 2;
+    const radius = 300 + Math.random() * 100; // Random radius between 300-400
+    const x = Math.cos(angle) * radius;
+    const y = Math.sin(angle) * radius;
+    return {
+      left: `calc(50% + ${x}px)`,
+      top: `calc(50% + ${y}px)`,
+    };
+  };
 
   useEffect(() => {
+    // Dynamically import all images from the landing page folder
+    const imageModules = import.meta.glob('/src/assets/Landing page img/*.{jpg,jpeg,JPG,JPEG}');
+    
+    // Load all images
+    Promise.all(
+      Object.values(imageModules).map(mod => mod())
+    ).then(modules => {
+      const images = modules.map((mod: any) => ({
+        src: mod.default,
+        alt: 'Sikkim Landscape'
+      }));
+      
+      // Ensure we have at least 8 images by duplicating if necessary
+      const allImages = [
+        ...images,
+        ...images,
+        ...images
+      ].slice(0, 8);
+      
+      setSikkimImages(allImages);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (sikkimImages.length === 0) return; // Don't run animation until images are loaded
+
     const hero = heroRef.current;
     const video = videoRef.current;
     const overlay = overlayRef.current;
     const title = titleRef.current;
     const subtitle = subtitleRef.current;
     const cta = ctaRef.current;
-    const images = imagesRef.current;
+    const images = Array.from(imagesRef.current).filter(Boolean);
 
-    if (hero && video && overlay && title && subtitle && cta) {
+    if (hero && video && overlay && title && subtitle && cta && images.length > 0) {
       // Set initial states
       gsap.set(overlay, { opacity: 0.7 });
       gsap.set([title, subtitle, cta], { opacity: 0, y: 50 });
       gsap.set(images, { opacity: 0, scale: 0.8, rotation: 15 });
 
-      // Play video
-      video.play().catch(error => {
-        console.log('Autoplay prevented, adding play button interaction');
-      });
+      // Play video if it exists
+      if (video) {
+        video.play().catch(error => {
+          console.log('Autoplay prevented, adding play button interaction');
+        });
+      }
 
       // Create main timeline
       const tl = gsap.timeline({ delay: 0.5 });
@@ -155,22 +186,21 @@ const SikkimArcHero = () => {
                 ref={(el) => {
                   if (el) imagesRef.current[index] = el;
                 }}
-                className="absolute w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36"
+                className="absolute rounded-xl shadow-2xl overflow-hidden transform transition-transform duration-1000 hover:scale-110 hover:z-10"
                 style={{
+                  width: '200px',
+                  height: '150px',
                   left: `calc(50% + ${x}px)`,
                   bottom: `${y}px`,
-                  transform: 'translate(-50%, 50%)',
-                  zIndex: sikkimImages.length - index,
+                  transform: `translateX(-50%) rotate(${getRandomRotation()}deg)`,
                 }}
               >
-                <div className="w-full h-full rounded-2xl overflow-hidden shadow-large ring-2 ring-white/20 hover:ring-primary/50 transition-all duration-300 backdrop-blur-sm">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover"
-                    draggable={false}
-                  />
-                </div>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
             );
           })}
