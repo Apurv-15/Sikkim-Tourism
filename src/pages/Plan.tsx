@@ -176,25 +176,29 @@ const Plan = () => {
           </p>
         </div>
 
-        {/* Google Maps Street View Section */}
-        <div ref={mapRef} className="container mx-auto px-6 py-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Explore Gangtok Virtually
+        {/* Essential Information */}
+        <div className="container mx-auto px-6 py-12">
+          <div className="glass rounded-3xl p-6 max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold text-foreground mb-6 text-center">
+              Essential Information
             </h2>
-            <p className="text-foreground/70 max-w-xl mx-auto">
-              Take a virtual walk through Gangtok's streets and get a feel for this beautiful mountain city.
-            </p>
-          </div>
-          
-          <div className="glass rounded-3xl p-8 max-w-4xl mx-auto">
-            <GoogleStreetView className="w-full h-96" />
+            <div className="grid md:grid-cols-2 gap-4">
+              {essentialInfo.map((info, index) => (
+                <div key={index} className="flex items-start gap-3 p-3 hover:bg-white/10 rounded-lg transition-colors">
+                  <info.icon className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-foreground">{info.title}</h3>
+                    <p className="text-sm text-foreground/70">{info.info}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Travel Packages */}
+        {/* Curated Experiences */}
         <div className="container mx-auto px-6 py-16">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Curated Experiences
             </h2>
@@ -203,51 +207,48 @@ const Plan = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {packages.map((pkg, index) => (
               <div
                 key={index}
                 ref={(el) => {
                   if (el) packagesRef.current[index] = el;
                 }}
-                className="glass rounded-3xl p-8 hover:bg-white/20 transition-all duration-300 group"
+                className="glass rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 group"
               >
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-gradient-mountain rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <pkg.icon className="w-8 h-8 text-white" />
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-mountain rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <pkg.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground mb-1">{pkg.name}</h3>
+                    <div className="flex items-center gap-3 text-xs text-foreground/60 mb-2">
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {pkg.duration}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Users className="w-3 h-3" />
+                        {pkg.group}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-foreground mb-2">{pkg.name}</h3>
-                
-                {/* Package Details */}
-                <div className="flex items-center gap-4 mb-4 text-sm text-foreground/70">
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    {pkg.duration}
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    {pkg.group}
-                  </div>
-                </div>
-
-                {/* Highlights */}
-                <div className="mb-6">
-                  <h4 className="font-semibold text-foreground mb-2">Highlights</h4>
-                  <div className="space-y-1">
+                <div className="mt-4">
+                  <h4 className="text-sm font-medium text-foreground/80 mb-1.5">Highlights</h4>
+                  <div className="space-y-1.5">
                     {pkg.highlights.map((highlight, idx) => (
-                      <div key={idx} className="text-sm text-foreground/70">
-                        • {highlight}
+                      <div key={idx} className="text-xs text-foreground/60 flex items-start gap-1.5">
+                        <span>•</span>
+                        <span>{highlight}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Difficulty */}
-                <div className="mb-6">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                <div className="mt-4 pt-3 border-t border-foreground/10">
+                  <span className={`px-2.5 py-1 rounded-full text-[11px] font-medium ${
                     pkg.difficulty === 'Easy' 
                       ? 'bg-green-100 text-green-800' 
                       : 'bg-orange-100 text-orange-800'
@@ -255,25 +256,6 @@ const Plan = () => {
                     {pkg.difficulty}
                   </span>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Essential Information */}
-        <div className="container mx-auto px-6 py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Essential Information
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {essentialInfo.map((info, index) => (
-              <div key={index} className="glass rounded-2xl p-6 text-center">
-                <info.icon className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold text-foreground mb-2">{info.title}</h3>
-                <p className="text-sm text-foreground/70">{info.info}</p>
               </div>
             ))}
           </div>
