@@ -40,3 +40,81 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Itinerary Styles */
+.itinerary-container {
+  max-width: 100%;
+  white-space: pre-line;
+  line-height: 1.6;
+  font-size: 0.9375rem;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.itinerary-container h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: #1e40af;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.itinerary-container h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem;
+  color: #1e4e8c;
+}
+
+.itinerary-container p {
+  margin: 0.75rem 0;
+  color: #334155;
+}
+
+.itinerary-container ul {
+  margin: 0.5rem 0 0.5rem 1.25rem;
+  padding-left: 0.5rem;
+  list-style-type: none;
+}
+
+.itinerary-container li {
+  margin: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.itinerary-container li:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+  font-weight: bold;
+  font-size: 1.25em;
+  line-height: 1;
+}
+
+.itinerary-container strong {
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.itinerary-container em {
+  font-style: italic;
+  color: #4b5563;
+}
+
+.itinerary-container a {
+  color: #2563eb;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.itinerary-container a:hover {
+  color: #1d4ed8;
+}
